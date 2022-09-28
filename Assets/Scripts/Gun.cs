@@ -13,13 +13,12 @@ public class Gun : MonoBehaviour
     }
     void fireBullet()
     {
-        // 1
-        GameObject bullet = Instantiate(bulletPrefab) as GameObject;
-        // 2
+        // Create a new bullet object from the Prefab by Cloning the bulletPrefab
+        GameObject bullet = Instantiate(bulletPrefab) as GameObject;    //as means casting
+        //Placing the bullet at the launcher position
         bullet.transform.position = launchPosition.position;
-        // 3
-        bullet.GetComponent<Rigidbody>().velocity =
-        transform.parent.forward * 100;
+        //Giving the bullet an initial velocity to take off with
+        bullet.GetComponent<Rigidbody>().velocity = transform.parent.forward * 100;
     }
 
     // Update is called once per frame
