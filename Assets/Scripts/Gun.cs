@@ -6,13 +6,15 @@ public class Gun : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform launchPosition;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
     void fireBullet()
     {
+        audioSource.PlayOneShot(SoundManager.Instance.gunFire);
         // Create a new bullet object from the Prefab by Cloning the bulletPrefab
         GameObject bullet = Instantiate(bulletPrefab) as GameObject;    //as means casting
         //Placing the bullet at the launcher position
