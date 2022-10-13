@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class Alien : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Alien : MonoBehaviour
     public float navigationUpdate;
     private float navigationTime = 0;
     private NavMeshAgent agent;
+    public UnityEvent OnDestroy;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,7 @@ public class Alien : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        Die();
         SoundManager.Instance.PlayOneShot(SoundManager.Instance.alienDeath);
     }
     void Update()
@@ -30,5 +32,11 @@ public class Alien : MonoBehaviour
                 navigationTime = 0;
             }
         }
+    }
+    public void Die()
+    {
+        OnDestroy.Invoke();
+        OnDestroy.RemoveAllListeners(); //Removing listener to prevent memory leark
+        Destroy(gameObject);
     }
 }
