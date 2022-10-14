@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     private float currentUpgradeTime = 0;
 
     public GameObject deathFloor;
+    public Animator arenaAnimator;
     void Start()
     {
         currentUpgradeTime += Time.deltaTime;
@@ -51,7 +52,12 @@ public class GameManager : MonoBehaviour
             upgradeMaxTimeSpawn);
         actualUpgradeTime = Mathf.Abs(actualUpgradeTime);
     }
-    // Update is called once per frame
+    private void endGame()
+    {
+        SoundManager.Instance.PlayOneShot(SoundManager.Instance.
+        elevatorArrived);
+        arenaAnimator.SetTrigger("PlayerWon");
+    }
     void Update()
     {
         if (player == null)
@@ -114,5 +120,9 @@ public class GameManager : MonoBehaviour
     {
         aliensOnScreen -= 1;
         totalAliens -= 1;
+        if (totalAliens == 0)
+        {
+            Invoke("endGame", 2.0f);
+        }
     }
 }
