@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private float actualUpgradeTime = 0;
     private float currentUpgradeTime = 0;
 
+    public GameObject deathFloor;
     void Start()
     {
         currentUpgradeTime += Time.deltaTime;
@@ -103,6 +104,7 @@ public class GameManager : MonoBehaviour
                             newAlien.transform.position.y, player.transform.position.z);
                             newAlien.transform.LookAt(targetRotation);
                             alienScript.OnDestroy.AddListener(AlienDestroyed);
+                        alienScript.GetDeathParticles().SetDeathFloor(deathFloor);
                     }
                 }
             }

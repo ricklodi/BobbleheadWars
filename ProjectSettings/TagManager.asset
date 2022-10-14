@@ -14,7 +14,7 @@ TagManager:
   - 
   - 
   - Alien
-  - Alein Head
+  - Alien Head
   - Bullet
   - Column
   - Floor
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 2517880987
     locked: 0
